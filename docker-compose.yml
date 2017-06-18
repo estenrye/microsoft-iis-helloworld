@@ -6,12 +6,27 @@ services:
       dockerfile: Dockerfile
     image: estenrye/microsoft-iis-helloworld
     environment:
-      - pagetext=Hello World
+      - pageText=Hello World
     ports:
       - 8090:80
     networks:
       hello:
         aliases:
           - helloworld
+  helloworld-customPath:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: estenrye/microsoft-iis-helloworld
+    environment:
+      - "pageText=Hello World at /hello"
+      - "useCustomPath=true"
+      - "customPath=hello"
+    ports:
+      - 8091:80
+    networks:
+      hello:
+        aliases:
+          - helloworldcustom
 networks:
   hello:
