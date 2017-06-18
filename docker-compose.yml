@@ -1,0 +1,17 @@
+version: "3"
+services:
+  helloworld:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: estenrye/microsoft-iis-helloworld
+    environment:
+      - pagetext=Hello World
+    ports:
+      - 8090:80
+    networks:
+      hello:
+        aliases:
+          - helloworld
+networks:
+  hello:
